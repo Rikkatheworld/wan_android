@@ -1,14 +1,8 @@
-package com.rikkatheworld.wan_android
+package com.rikkatheworld.wan_android.data.bean
 
 data class ArticleListModel(
-    val `data`: Data?,
-    val errorCode: Int?,
-    val errorMsg: String?
-)
-
-data class Data(
     val curPage: Int?,
-    val datas: List<DataX>?,
+    val datas: List<ArticleModel>?,
     val offset: Int?,
     val over: Boolean?,
     val pageCount: Int?,
@@ -16,7 +10,7 @@ data class Data(
     val total: Int?
 )
 
-data class DataX(
+data class ArticleModel(
     val apkLink: String?,
     val audit: Int?,
     val author: String?,
@@ -44,7 +38,7 @@ data class DataX(
     val shareUser: String?,
     val superChapterId: Int?,
     val superChapterName: String?,
-    val tags: List<Tag?>?,
+    val articleTags: List<ArticleTag?>?,
     val title: String?,
     val type: Int?,
     val userId: Int?,
@@ -52,7 +46,7 @@ data class DataX(
     val zan: Int?
 )
 
-data class Tag(
+data class ArticleTag(
     val name: String?,
     val url: String?
 )

@@ -1,15 +1,19 @@
-package com.rikkatheworld.wan_android
+package com.rikkatheworld.wan_android.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.gson.Gson
-import com.rikkatheworld.wan_android.PlayDestinations.ARTICLE_ROUTE_URL
-import com.rikkatheworld.wan_android.ui.MainPage
+import com.rikkatheworld.wan_android.data.PlayDestinations
+import com.rikkatheworld.wan_android.data.PlayDestinations.ARTICLE_ROUTE_URL
+import com.rikkatheworld.wan_android.data.bean.ArticleModel
+import com.rikkatheworld.wan_android.ui.main.MainPage
+import java.net.URLEncoder
 
 @Composable
 fun NavGraph(
@@ -40,5 +44,18 @@ fun NavGraph(
                 onBack = actions.upPress
             )
         }
+    }
+}
+
+class PlayActions(navController: NavHostController) {
+
+    val enterArticle: (ArticleModel) -> Unit = { article ->
+        val gson = Gson().toJson(article).trim()
+        val result = URLEncoder.encode(gson, "utf-8")
+        navController.navigate("${PlayDestinations.ARTICLE_ROUTE}/$result")
+    }
+
+    val upPress: () -> Unit = {
+        navController.navigateUp()
     }
 }

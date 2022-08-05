@@ -1,7 +1,5 @@
 package com.rikkatheworld.wan_android.ui.main
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
@@ -13,10 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.rikkatheworld.wan_android.ArticleModel
-import com.rikkatheworld.wan_android.PlayActions
-import com.rikkatheworld.wan_android.R
-import com.rikkatheworld.wan_android.ui.HomeViewModel
+import com.rikkatheworld.wan_android.ui.PlayActions
+import com.rikkatheworld.wan_android.data.CourseTabs
+import com.rikkatheworld.wan_android.data.bean.ArticleModel
 import java.util.*
 
 @Composable
@@ -73,14 +70,4 @@ fun ProjectPage(enterArticle: (ArticleModel) -> Unit, modifier: Modifier) {
 @Composable
 fun HomePage(actions: PlayActions, modifier: Modifier) {
 
-}
-
-enum class CourseTabs(
-    @StringRes val title: Int,
-    @DrawableRes val icon: Int
-) {
-    HOME_PAGE(R.string.home_page, R.drawable.ic_nav_news_normal),
-    PROJECT(R.string.project, R.drawable.ic_nav_tweet_normal),
-    OFFICIAL_ACCOUNT(R.string.official_account, R.drawable.ic_nav_discover_normal),
-    MINE(R.string.mine, R.drawable.ic_nav_my_normal)
 }

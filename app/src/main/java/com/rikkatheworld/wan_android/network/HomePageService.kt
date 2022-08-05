@@ -1,5 +1,8 @@
-package com.rikkatheworld.wan_android
+package com.rikkatheworld.wan_android.network
 
+import com.rikkatheworld.wan_android.data.bean.ArticleListModel
+import com.rikkatheworld.wan_android.data.bean.BannerBean
+import com.rikkatheworld.wan_android.data.bean.BaseModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 

@@ -1,9 +1,9 @@
-package com.rikkatheworld.wan_android.ui
+package com.rikkatheworld.wan_android.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.rikkatheworld.wan_android.ui.main.CourseTabs
+import com.rikkatheworld.wan_android.data.CourseTabs
 
 class HomeViewModel : ViewModel() {
     fun onPositionChanged(tab: CourseTabs) {

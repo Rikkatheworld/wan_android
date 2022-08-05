@@ -1,10 +1,13 @@
-package com.rikkatheworld.wan_android
+package com.rikkatheworld.wan_android.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.rikkatheworld.wan_android.data.BaseArticlePagingRepository
+import com.rikkatheworld.wan_android.data.Query
+import com.rikkatheworld.wan_android.data.bean.ArticleModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow

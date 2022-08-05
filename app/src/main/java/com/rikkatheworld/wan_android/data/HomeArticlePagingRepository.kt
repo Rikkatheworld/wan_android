@@ -1,22 +1,13 @@
-package com.rikkatheworld.wan_android
+package com.rikkatheworld.wan_android.data
 
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.*
-import kotlinx.coroutines.flow.Flow
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
+import com.rikkatheworld.wan_android.data.bean.ArticleModel
+import com.rikkatheworld.wan_android.network.PlayAndroidNetwork
 import java.lang.RuntimeException
-
-abstract class BaseArticlePagingRepository {
-    companion object {
-        const val PAGE_SIZE = 15
-    }
-
-    abstract fun getPagingData(query: Query): Flow<PagingData<ArticleModel>>
-}
-
-data class Query(
-    val cid: Int = -1,
-    val k: String = ""
-)
 
 class HomeArticlePagingRepository : BaseArticlePagingRepository() {
 
@@ -27,27 +18,21 @@ class HomeArticlePagingRepository : BaseArticlePagingRepository() {
         )
     ) {
         HomePagingSource()
-    }.flow()
+    }.flow
 
     suspend fun getBanner(state: MutableLiveData<PlayState>) {
-        state.postValue(PlayState.PlayLoading)
+        state.postValue(PlayLoading)
         val bannerResponse = PlayAndroidNetwork.getBanner()
-        if (bannerResponse.errorCode == 0) {
-            val bannerList = bannerResponse.data
-            bannerList.forEach {
-                it.data = it.imagePath
-            }
-            state.postValue(PlaySuccess(bannerList))
-        } else {
-            state.postValue(
-                PlayError(
-                    RuntimeException(
-                        "response status is ${bannerResponse.error}" +
-                                " msg is ${bannerResponse.errorMsg}"
-                    )
+        state.postValue(
+            if (bannerResponse.errorCode == 0)
+                PlaySuccess(bannerResponse.data)
+            else PlayError(
+                RuntimeException(
+                    "response status is ${bannerResponse.errorCode}," +
+                            "msg is ${bannerResponse.errorMsg}"
                 )
             )
-        }
+        )
     }
 }
 
@@ -57,7 +42,7 @@ class HomePagingSource : PagingSource<Int, ArticleModel>() {
         try {
             val page = params.key ?: 1
             val apiResponse = PlayAndroidNetwork.getArticleList(page)
-            val articleList = apiResponse.data.datas
+            val articleList = apiResponse.data.datas ?: emptyList()
             val preKey = if (page > 1) page - 1 else null
             val nextKey = if (articleList.isNotEmpty()) page + 1 else null
             LoadResult.Page(articleList, preKey, nextKey)

@@ -1,4 +1,4 @@
-package com.rikkatheworld.wan_android
+package com.rikkatheworld.wan_android.data
 
 sealed class PlayState
 

@@ -1,9 +1,14 @@
-package com.rikkatheworld.wan_android
+package com.rikkatheworld.wan_android.ui.home
 
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.rikkatheworld.wan_android.data.BaseArticlePagingRepository
+import com.rikkatheworld.wan_android.data.HomeArticlePagingRepository
+import com.rikkatheworld.wan_android.data.PlayState
+import com.rikkatheworld.wan_android.data.Query
+import com.rikkatheworld.wan_android.ui.BaseArticleViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

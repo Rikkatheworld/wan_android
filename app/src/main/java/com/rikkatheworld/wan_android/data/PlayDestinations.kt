@@ -1,4 +1,4 @@
-package com.rikkatheworld.wan_android
+package com.rikkatheworld.wan_android.data
 
 object PlayDestinations {
     const val HOME_PAGE_ROUTE = "home_page_route"
