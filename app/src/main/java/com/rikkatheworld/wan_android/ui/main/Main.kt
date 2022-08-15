@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.rikkatheworld.wan_android.ui.PlayActions
 import com.rikkatheworld.wan_android.data.CourseTabs
 import com.rikkatheworld.wan_android.data.bean.ArticleModel
+import com.rikkatheworld.wan_android.ui.home.HomePage
 import java.util.*
 
 @Composable
@@ -65,9 +66,4 @@ fun OfficialAccountPage(enterArticle: (ArticleModel) -> Unit, modifier: Modifier
 
 @Composable
 fun ProjectPage(enterArticle: (ArticleModel) -> Unit, modifier: Modifier) {
-}
-
-@Composable
-fun HomePage(actions: PlayActions, modifier: Modifier) {
-
 }
